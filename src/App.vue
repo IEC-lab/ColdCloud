@@ -15,10 +15,10 @@ import graphqlHelper from "@/pkg/Graphql";
 export default {
   name: "App",
   data() {
-    var rs = graphqlHelper.queryGraphql(`query Query {getFrameStreams}`);
+    var rs = graphqlHelper.queryGraphql(`query Query {frameStreams}`);
     var oneUrl = "";
     if(rs != null){
-      oneUrl = rs.getFrameStreams[0];
+      oneUrl = rs.frameStreams[0];
     }
     return {
       testUrl: oneUrl,
