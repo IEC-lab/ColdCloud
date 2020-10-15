@@ -12,7 +12,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api': {                       //需要代理的接口
-        target:'http://0.0.0.0:8899', //目标服务器
+        target:'http://coldmountain-service.coldworld:8899', //目标服务器
         changeOrigin: true,　　　　　　//是否跨域
         pathRewrite: {
           '^/api': '/api'             //重定向

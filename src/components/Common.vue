@@ -2,7 +2,7 @@
     const APIURL = "/api"
     const STREAMSURL = APIURL + "/streams"
     const GRAPHQLURL = APIURL + "/graphql/query"
-    const COLDBRIDGEURL = "ws://192.168.1.4:9000/rtsp/1/"
+    const COLDBRIDGEURL = "ws://coldbridge-service.coldworld:9000/rtsp/1/"
     export default {
         APIURL,
         STREAMSURL,
