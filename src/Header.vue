@@ -1,6 +1,6 @@
 <template>
   <div id="app_header">
-    <div class="indent_px"></div>
+    <div class="indent_px24"></div>
     <img src="./assets/iec_log.jpg" class="vertical_middle" width="40px" />
     &nbsp;&nbsp;
     <strong class="vertical_middle">Cold Cloud（IEC 云边端架构前台）</strong>
@@ -20,7 +20,7 @@ export default {
   padding: 0;
 }
 #app_header{
-  width: 100%;
+  width: 1920px;
   height: 52px;
   padding-top: 7px;
   position: relative;
@@ -39,7 +39,7 @@ export default {
 .vertical_middle{
   vertical-align: middle;
 }
-.indent_px{
+.indent_px24{
   display: inline-block;
   width: 24px;
 }

@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import Header from './Header'
 import App from './App'
+import ResourceList from './components/ResourceList'
 import router from './router'
 import Video from 'video.js'
 import 'video.js/dist/video-js.css'
@@ -22,4 +23,11 @@ new Vue({
   router,
   components: { Header },
   template: '<Header/>'
+})
+
+new Vue({
+  el: '#resource_list',
+  router,
+  components: { ResourceList },
+  template: '<ResourceList/>'
 })

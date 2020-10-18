@@ -3,8 +3,9 @@
       <div id="videoTitle">
         <div class="title_label">实时流</div><div class="title_content">{{ selectedStreamTitle }}</div>
       </div>
-      <div id="videoDescription">{{ selectedStreamContent }}</div>
+      <div id="videoDescription">{{ selectedStreamDescription }}</div>
       <video id="videoPlay" muted controls width="960" height="540"></video>
+      <div id="resource_list"></div>
   </div>
 </template>
 
@@ -20,17 +21,17 @@ export default {
     var rs = graphqlHelper.queryGraphql(`query Query { frameStreams { URL Position } }`);
     var oneUrl = "";
     var oneTitle = "";
-    var oneContent = "";
+    var oneDescription = "";
     if(rs != null){
-      var selectedStream = rs.frameStreams[1];
+      var selectedStream = rs.frameStreams[0];
       oneUrl = selectedStream["URL"];
       oneTitle = selectedStream["Position"];
-      oneContent = oneUrl;
+      oneDescription = oneUrl;
     }
     return {
       selectedStreamURL: oneUrl,
       selectedStreamTitle: oneTitle,
-      selectedStreamContent: oneContent,
+      selectedStreamDescription: oneDescription,
     };
   },
   mounted: function () {
@@ -58,6 +59,11 @@ export default {
 </script>
 
 <style>
+#app_content{
+  position: relative;
+  width: 1920px;
+  height: 880px;
+}
 #videoTitle{
   width: 100%;
   height: 60px;
@@ -90,5 +96,10 @@ export default {
 }
 #videoPlay{
   margin: 0 0 0 256px;
+}
+#resource_list{
+  position: absolute;
+  right: 350px;
+  top: 100px;
 }
 </style>
