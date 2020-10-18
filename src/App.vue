@@ -1,8 +1,10 @@
 <template>
   <div id="app_content">
-    <center>
-      <video id="testVideo" muted controls width="960" height="540"></video>
-    </center>
+      <div id="videoTitle">
+        <div class="title_label">实时流</div><div class="title_content">{{ selectedStreamTitle }}</div>
+      </div>
+      <div id="videoDescription">{{ selectedStreamContent }}</div>
+      <video id="videoPlay" muted controls width="960" height="540"></video>
   </div>
 </template>
 
@@ -15,26 +17,33 @@ import graphqlHelper from "@/pkg/Graphql";
 export default {
   name: "App",
   data() {
-    var rs = graphqlHelper.queryGraphql(`query Query { frameStreams { URL } }`);
+    var rs = graphqlHelper.queryGraphql(`query Query { frameStreams { URL Position } }`);
     var oneUrl = "";
+    var oneTitle = "";
+    var oneContent = "";
     if(rs != null){
-      oneUrl = rs.frameStreams[0]["URL"];
+      var selectedStream = rs.frameStreams[1];
+      oneUrl = selectedStream["URL"];
+      oneTitle = selectedStream["Position"];
+      oneContent = oneUrl;
     }
     return {
-      testUrl: oneUrl,
+      selectedStreamURL: oneUrl,
+      selectedStreamTitle: oneTitle,
+      selectedStreamContent: oneContent,
     };
   },
   mounted: function () {
     var theObj = this;
-    var testVideo = $("#testVideo")[0];
+    var videoPlay = $("#videoPlay")[0];
 
     if (flvjs.isSupported()) {
       theObj.player = flvjs.createPlayer({
         type: "flv",
         isLive: true,
-        url: `${Common.COLDBRIDGEURL}?url=${theObj.testUrl}`,
+        url: `${Common.COLDBRIDGEURL}?url=${theObj.selectedStreamURL}`,
       });
-      theObj.player.attachMediaElement(testVideo);
+      theObj.player.attachMediaElement(videoPlay);
       try {
         theObj.player.load();
         theObj.player.play();
@@ -49,4 +58,37 @@ export default {
 </script>
 
 <style>
+#videoTitle{
+  width: 100%;
+  height: 60px;
+  position: relative;
+}
+#videoTitle .title_label{
+  position: absolute;
+  top: 28px;
+  left: 258px;
+  width: 58px;
+  padding-top: 3px;
+  height: 19px;
+  background-color: rgb(255, 175, 201);
+  color: white;
+  font-size: 12px;
+  text-align: center;
+}
+#videoTitle .title_content{
+  position: absolute;
+  top: 26px;
+  left: 322px;
+  margin-left: 8px;
+  font-size: 18px;
+}
+#videoDescription{
+  height: 34px;
+  font-size: 12px;
+  margin-left: 260px;
+  color: rgb(153, 153, 153);
+}
+#videoPlay{
+  margin: 0 0 0 256px;
+}
 </style>
