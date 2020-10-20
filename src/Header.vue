@@ -1,7 +1,7 @@
 <template>
   <div id="app_header">
     <div class="indent_px24"></div>
-    <img src="./assets/iec_log.jpg" class="vertical_middle" width="40px" />
+    <img src="@/assets/iec_log.jpg" class="vertical_middle" width="40px" />
     &nbsp;&nbsp;
     <strong class="vertical_middle">Cold Cloud（IEC 云边端架构前台）</strong>
     <div class="line_px3 absolute_left0_bottom0"></div>
